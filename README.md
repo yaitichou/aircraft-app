@@ -5,7 +5,7 @@ L'objectif de ce projet est le déploiement d'une application de détection d'av
 
 ![Microservices](/graphics/architecture_microservice.png)
 
-Le point d'entrée de toutes les requêtes est une API. Son rôle est de rediriger les requêtes vers le microservice adéquat. Ici, nous ne retrouvons qu'un seul microservice, mais dans une situation réelle cette application pourrait être amenée à en intégrer d'autres (identification, sauvegarde en base de données ...). Cette architecture est modulaire et permet une décomposition de l'application et accélère le développement. Pour s'assurer de respecter les contraintes de sécurité, 
+Le point d'entrée de toutes les requêtes est une API. Son rôle est de rediriger les requêtes vers le microservice adéquat. Ici, nous ne retrouvons qu'un seul microservice, mais dans une situation réelle cette application pourrait être amenée à en intégrer d'autres (identification, sauvegarde en base de données ...). Cette architecture est modulaire, permet une décomposition de l'application et accélère le développement. Pour s'assurer de respecter les contraintes de sécurité, 
 
 Chaque composant indépendant de cette architecture est encapsulé dans un conteneur docker, comprenant l'ensemble de l'environnement d'exécution et pouvant être déployé facilement.
 
