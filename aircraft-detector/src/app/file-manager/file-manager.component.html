@@ -1,0 +1,22 @@
+
+
+<!-- Display image -->
+<p><img  class="images" src={{url}}/></p>
+
+
+<!-- Display result -->
+<div class="result" *ngIf="display">
+  
+  <h2>Résultat</h2>{{planeName || ""}}
+
+</div>
+
+
+<!-- Drag and drop element -->
+<div class="container" appDnd (fileDropped)="onFileDropped($event)">
+  <input type="file" (change)="onFileSelected($event)" #fileDropRef id="fileDropRef" />
+  <img src="./../../assets/ic-upload-file.svg" alt="">
+  <h3>Déposer</h3>
+  <h3>ou</h3>
+  <label for="fileDropRef">Chercher un fichier</label>
+</div>
