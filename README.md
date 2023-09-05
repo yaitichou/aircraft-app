@@ -12,7 +12,7 @@ Chaque composant indépendant de cette architecture est encapsulé dans un conte
 Pour obtenir ce repository sur votre machine locale, lancez la commande git dans un terminal :
 
 ```
-
+git clone https://github.com/yaitichou/aircraft-app.git
 ```
 
 ## Conteneurs
