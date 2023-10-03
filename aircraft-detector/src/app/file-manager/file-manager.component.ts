@@ -11,7 +11,7 @@ export class FileManagerComponent {
 
     fileName : string = '';
     display : boolean = false;
-    planeName : string = '';
+    planeNames : string[] = [];
     url :string|ArrayBuffer|null = '';
     imagePath: any;
 
@@ -25,7 +25,7 @@ export class FileManagerComponent {
          * Call processRequest to do an apigateway call.
          * @param event selection event
          */
-        
+        this.planeNames = []
         const file:File = event.target.files[0];
 
         const reader = new FileReader();
@@ -33,10 +33,9 @@ export class FileManagerComponent {
 
         reader.readAsDataURL(event.target.files[0]); 
         reader.onload = (_event) => { 
-                this.url = reader.result; 
+                this.url = reader.result;
+                this.processRequest(file)
         }
-
-        this.processRequest(file)
         
     }
 
@@ -48,6 +47,7 @@ export class FileManagerComponent {
          * @param event drop event
          */
 
+        this.planeNames = []
         const file:File = event[0];
 
         const reader = new FileReader();
@@ -55,10 +55,11 @@ export class FileManagerComponent {
 
         reader.readAsDataURL(event[0]); 
         reader.onload = (_event) => { 
-                this.url = reader.result; 
+                this.url = reader.result;
+                this.processRequest(file)
         }
 
-        this.processRequest(file)
+
     }
 
     processRequest(file: File){
@@ -66,24 +67,14 @@ export class FileManagerComponent {
         /**
          * Invoke aircraft-detection service to do an apigateway call.
          */
-
-        const threshold = 12;
-
-        if (file) {
-            if (file.name.length > threshold){
-                this.fileName = file.name.substring(0, threshold-1);
-                this.fileName = this.fileName +"...";
+        // Invoke detection service to call for the API
+        this.detectionService.postFile(file).subscribe(res => {
+            const parsed_result = JSON.parse(res) 
+            for (const detection of parsed_result){
+                this.planeNames.push(detection)
             }
-            else{
-                this.fileName = file.name;
-            }
-            // Invoke detection service to call for the API
-            this.detectionService.postFile(file).subscribe(res => {
-                this.planeName = res.detection;
-                this.display = true;
-            });
-
-        }
+            this.display = true;
+        });
     }
 
 }

@@ -7,7 +7,11 @@
 <!-- Display result -->
 <div class="result" *ngIf="display">
   
-  <h2>Résultat</h2>{{planeName || ""}}
+  <h2>Résultat</h2>
+
+  La détection de modèle d'avion fourni les modèles suivants :
+  
+  <li *ngFor="let planeName of planeNames">{{planeName.name}} - Confiance = {{planeName.confidence}}</li>
 
 </div>
 
