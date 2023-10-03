@@ -21,8 +21,9 @@ COPY best.onnx .
 COPY worker.py .
 COPY start.sh /start.sh
 
-RUN chmod +x /start.sh
-
 EXPOSE 80
+
+RUN sed -i 's/\r$//' /start.sh  && \  
+        chmod +x /start.sh
 
 CMD ["/start.sh"]

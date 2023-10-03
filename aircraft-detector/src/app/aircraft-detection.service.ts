@@ -27,9 +27,11 @@ export class AircraftDetectionService {
   constructor(public httpClient: HttpClient) { }
 
   postFile(fileToUpload: File) {
+
     const endpoint = 'http://localhost:4200/api';
     var formData: FormData = new FormData();
 
+    // Call the API endpoint to upload file
     formData.append("file",fileToUpload) ;
     return this.httpClient.post<Detection[]>(endpoint, formData).pipe(
       tap(
@@ -40,6 +42,6 @@ export class AircraftDetectionService {
     )
 }
   handleError(e: any) {
-    throw new Error('Erreur de transmission des données.');
+    throw new Error('Data transmission error');
   }
 }

@@ -9,8 +9,7 @@ import { AircraftDetectionService } from '../aircraft-detection.service';
 
 export class FileManagerComponent {
 
-    fileName : string = '';
-    display : boolean = false;
+    display : boolean = false; 
     planeNames : string[] = [];
     url :string|ArrayBuffer|null = '';
     imagePath: any;
